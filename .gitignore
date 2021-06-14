@@ -1,6 +1,6 @@
 # Test notebooks
 *test*
-data/
+*.h
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

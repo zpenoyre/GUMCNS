@@ -26,7 +26,7 @@ multiplicity = {sys_id:multiplicity for sys_id,multiplicity  in zip(*np.unique(s
 # Get binaries
 binaries = {'system_id':[]}
 # 'mag_g','mag_bp','mag_rp','vsini','spectral_type'
-star_keys = ['mass','primary_mean_absolute_v', 'v_i','mag_rvs','teff','logg','radius','spectral_type']
+star_keys = ['mass','mean_absolute_v', 'v_i','mag_rvs','teff','logg','radius','spectral_type']
 system_keys = ['ra','dec','barycentric_distance','pmra','pmdec','radial_velocity','population','age','feh','alphafe']
 orbit_keys = ['semimajor_axis','eccentricity','inclination','longitude_ascending_node','orbit_period','periastron_date','periastron_argument']
 
@@ -93,7 +93,8 @@ data = {}
 for key in singles.keys():
     data[key] = np.hstack((singles[key], binaries[key]))
 for key in dtypes:
-    data[key] = data[key].astype(dtypes[key])
+    try: data[key] = data[key].astype(dtypes[key])
+    except KeyError: pass
 data['binary'] = np.hstack((np.zeros(len(singles['system_id']), dtype=bool),
                             np.ones(len(binaries['system_id']), dtype=bool)))
 
@@ -101,4 +102,4 @@ data['binary'] = np.hstack((np.zeros(len(singles['system_id']), dtype=bool),
 with h5py.File(f'/data/asfe2/Projects/binaries/GCNS_mock/gums_sample_{max_dist}pc.h', 'w') as hf:
     for key in data.keys():
         #print(key)
-        hf.create_dataset(key, data=data[key])
+        hf.create_dataset(key, data=data[key], compression = 'lzf', chunks = True)
