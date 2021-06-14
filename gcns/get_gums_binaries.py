@@ -25,7 +25,8 @@ multiplicity = {sys_id:multiplicity for sys_id,multiplicity  in zip(*np.unique(s
 
 # Get binaries
 binaries = {'system_id':[]}
-star_keys = ['mass','mag_g','mag_bp','mag_rp','mag_rvs','teff','logg','radius','vsini','variability_type','variability_amplitude','variability_period','variability_phase','spectral_type']
+# 'mag_g','mag_bp','mag_rp','vsini','spectral_type'
+star_keys = ['mass','primary_mean_absolute_v', 'v_i','mag_rvs','teff','logg','radius','spectral_type']
 system_keys = ['ra','dec','barycentric_distance','pmra','pmdec','radial_velocity','population','age','feh','alphafe']
 orbit_keys = ['semimajor_axis','eccentricity','inclination','longitude_ascending_node','orbit_period','periastron_date','periastron_argument']
 
