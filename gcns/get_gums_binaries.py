@@ -5,7 +5,7 @@ import tqdm, h5py, time
 
 
 # Download from Gaia archive
-max_dist=200
+max_dist=50
 Gaia.ROW_LIMIT=-1
 
 tstart = time.time()
