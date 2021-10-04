@@ -117,7 +117,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-*Icon
-Icon
-data/Icon
-gcns/Icon
+Icon[\r]
